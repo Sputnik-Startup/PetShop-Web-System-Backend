@@ -2,14 +2,17 @@ const User = require("../models/Cliente");
 
 module.exports = {
     async store(req, res){
-        const { email } = req.body;
+        const { cpf } = req.body;
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ cpf });
 
         if(!user){
-            return res.status(400).json({erro: "Usuário não encontrado."});
+            return res.json({erro: "Usuário não encontrado."});
+        }
+        if(cpf === ""){
+            return res.json({erro:"Por favor, preencha todos os campos abaixo."})
         }
 
-        return res.json(user)
+        return res.json(user);
     }
 }
