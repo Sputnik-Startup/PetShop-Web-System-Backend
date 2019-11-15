@@ -3,12 +3,12 @@ const User = require("../models/Cliente");
 
 module.exports = {
     async store(req, res){
-        const { nome, tipo, raca, dono } = req.body;
+        const { nome, tipo, raca } = req.body;
         const { user_id } = req.headers;
 
         const user = await User.findById(user_id)
         if(!user){
-            return res.status(400).json({ error: "Usuário inexistente." })
+            return res.json({ error: "Usuário inexistente." })
         }
         let animal = await Animal.findOne({ nome, tipo, raca, dono: user_id });
 
