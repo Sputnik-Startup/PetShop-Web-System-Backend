@@ -1,7 +1,7 @@
 const Animal = require("../models/Animal")
 
 module.exports = {
-    async store(req, res){
+    async index(req, res){
         const { user_id } = req.headers;
 
         const animals = await Animal.find({ dono: user_id });
