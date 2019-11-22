@@ -17,7 +17,7 @@ module.exports = {
         
         const animals = await Animal.find({ dono: user_id });
 
-        if(!animals){
+        if(animals.length === 0){
             return res.json({message: "Nenhum animal registrado."})
         }
 

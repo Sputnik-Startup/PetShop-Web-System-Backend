@@ -8,6 +8,7 @@ const ListController = require("./controllers/listController");
 const ScheduleController = require("./controllers/agendaController");
 const HourController = require("./controllers/hourController");
 const AnimalDestroyController = require("./controllers/animalDestroyController");
+const AnimalEditController = require("./controllers/animalEditController")
 
 const routes = express.Router();
 
@@ -25,7 +26,9 @@ routes.get("/get-hours", HourController.index);
 
 routes.post("/schedules", PendenteController.store);
 
-routes.delete("/destroy-animal", AnimalDestroyController.destroy)
+routes.delete("/destroy-animal", AnimalDestroyController.destroy);
+
+routes.put("/edit-animal/:animal_id", AnimalEditController.update);
 
 
 module.exports = routes;
