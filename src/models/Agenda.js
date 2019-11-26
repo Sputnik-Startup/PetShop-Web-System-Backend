@@ -12,7 +12,10 @@ const AgendaSchema = new mongoose.Schema({
   data: String,
   hora: String,
   servico: String,
-
+  status: {
+    type: Boolean,
+    default: false,
+  }
 })
 
 module.exports = mongoose.model("Agenda", AgendaSchema)
