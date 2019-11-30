@@ -23,7 +23,7 @@ routes.post("/user/animal", AnimalController.store);
 
 routes.post("/new-schedule", ScheduleController.store)
 
-routes.post("/schedules", PendenteController.store);
+routes.post("/pending", PendenteController.store);
 
 routes.get("/animal-list", ListController.index);
 

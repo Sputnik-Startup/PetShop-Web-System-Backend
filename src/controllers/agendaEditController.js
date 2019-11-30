@@ -3,7 +3,7 @@ const Schedule = require("../models/Agenda");
 module.exports = {
   async index(req, res){
     const { agenda_id } = req.params;
-    let { dataEdit, horaEdit, servicoEdit } = req.body;
+    let { dataEdit, horaEdit, servicoEdit, status } = req.body;
     let date = dataEdit.split("-");
     dataEdit = `${date[2]}/${date[1]}/${date[0]}`;
 
@@ -11,7 +11,10 @@ module.exports = {
     
     const agendaAlreadyExists = await Schedule.findOne({ dataEdit, horaEdit });
 
-    if(agendaAlreadyExists){
+    if(status){
+      newSchedule = await Schedule.updateOne({ _id: agenda_id }, { data: dataEdit, hora: horaEdit, servico: servicoEdit, status });
+    }
+    if(agendaAlreadyExists && !status){
       return res.json({erro: "Este horário já foi reservado."});
     }else{
       newSchedule = await Schedule.updateOne({ _id: agenda_id }, { data: dataEdit, hora: horaEdit, servico: servicoEdit });
