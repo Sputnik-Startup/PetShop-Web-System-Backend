@@ -12,6 +12,7 @@ const AnimalEditController = require("./controllers/animalEditController");
 const ScheduleListController = require("./controllers/agendaListController");
 const ScheduleDestroyController = require("./controllers/agendaDestroyController");
 const ScheduleEditController = require("./controllers/agendaEditController");
+const PerfilController = require("./controllers/getPerfilController");
 
 const routes = express.Router();
 
@@ -31,11 +32,15 @@ routes.get("/get-hours", HourController.index);
 
 routes.get("/schedule-list", ScheduleListController.index);
 
+routes.get("/get-perfil", PerfilController.show);
+
 routes.delete("/destroy-animal", AnimalDestroyController.destroy);
 
 routes.delete("/destroy-schedule", ScheduleDestroyController.destroy);
 
 routes.put("/edit-animal/:animal_id", AnimalEditController.update);
+
+routes.put("/edit-user", PerfilController.show);
 
 routes.put("/edit-schedule/:agenda_id", ScheduleEditController.index);
 

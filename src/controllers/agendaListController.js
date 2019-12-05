@@ -17,7 +17,7 @@ module.exports = {
     
     let sch = await Schedule.find({ cliente: user_id, status: true}).populate("animal");
     
-    if(!sch){
+    if(sch.length === 0){
       return res.json({message: "Nenhum agendamento registrado."});
     }
 
