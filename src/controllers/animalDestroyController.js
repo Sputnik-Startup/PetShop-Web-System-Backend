@@ -1,4 +1,5 @@
 const Animal = require("../models/Animal");
+const Pend = require("../models/Pendente");
 
 module.exports = {
   async destroy(req, res){
@@ -19,6 +20,7 @@ module.exports = {
           return res.json({erro:`Houve ao deletar o animal com o id: ${ani}`});
         }
       })
+      await Pend.deleteOne({ animal: ani });
     }
 
     return res.json({message: "Dados deletados com sucesso."})
