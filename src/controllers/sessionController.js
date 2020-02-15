@@ -15,5 +15,20 @@ module.exports = {
             user = await User.create({ nome, email, cpf, telefone });
         }
         return res.json(user);
+    },
+
+    async show(req, res){
+        const { cpf } = req.body;
+
+        const user = await User.findOne({ cpf });
+
+        if(!user){
+            return res.json({erro: "Usuário não encontrado."});
+        }
+        if(cpf === ""){
+            return res.json({erro:"Por favor, preencha todos os campos abaixo."})
+        }
+
+        return res.json(user);
     }
 }
